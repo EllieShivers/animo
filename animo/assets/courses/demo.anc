@@ -1,0 +1,153 @@
+[COURSE_TITLE] Animo Demo Course
+[CREATION_DATE] 2010-01-01
+[LAST_UPDATED] 2020-01-01
+[AUTHORS] Elizabeth Shivers
+[DESCRIPTION] Demo course.
+
+[INTRODUCTION] Welcome to the Animo Demo Course! This course acts as a tutorial to walk you through viewing a course through Animo as well as building courses of your own! This page provides an Course Introduction, which serves as a landing page for your course. Above this text you will see general course details such as author, creation date, when the course was last updated, and a short course description that is pulled from the course meta data. There are two primary means of navigation: the lesson controls at the top of this frame and the navigation pane to the left which provides a complete list of units and lessons for a unit once one is selected. You can begin this tutorial by clicking next lesson above or selecting unit 1 then lesson 1 in the navigation pane.
+
+# Getting Started
+## What is Animo?
+[IMAGE_HEADER] gettingstarted.png
+
+###
+Animo is a lightweight, personal MOOC (Massive Open Online Course), which allows a user to quickly deploy simple courses. A single Animo deployment can handle any number of courses an individual wishes to provide, though most users will probably only deploy one or two. Courses are easy to put together, and are made up of a simple modified MarkDown language which are then rendered into the live course. It was written in Angular2+.
+
+### Why is Animo different?
+The best known MOOCs are typically built around a centralized service, allowing teachers to build and deliver courses to students from a single location. This would include sites such as Udacity, Udemy, or Khan Academy. Institutions who wish to have more control over their own platform may employ MOOCs such as Canvas or Brightspace, which are what you will typically see used by Universities and similar organizations. Most are inaccessible to the average individual however, either due to cost or technical requirements. For those interested in deploying a single course of their own quickly, they simply aren't practical.
+
+### Who is Animo for? What's the point?
+The primary audience for Animo is students or enthusiasts who need a place to put their work and are unable to access commercial platforms, or those who wish to show off their material as part of a portfolio or similar but who are not worried about traffic.
+Keep in mind that due to the personal nature of Animo, you are responsible for all promotion for your courses. There is no centralized hub to search. If you intend to develop a course and sit back and let the students roll in, Animo is not for you.
+
+### What's with the name?
+Look, it's a working title, okay. Everything else was taken, and I'm surprise this wasn't. (Though it did allow for a cute little logo!)
+
+### Origins
+This application was developed by Elizabeth Shivers (jshivers3@gatech.edu), and was originally used to host a content development project in CS6460 Educational Technology for Georgia Institute of Technology. (The OpenEdX servers weren't working!) Recognizing many students had created small web applications to support their projects in the same way, it became obvious there was a need to be filled. So, post semester the application was rebuilt from the bround up, branded, and is now being shoved out into the world on the hope someone, somewhere finds it useful! Maybe that's you, or maybe it's no one and nobody is actually reading this. *shrug* Who knows?
+
+## How do I use this thing?
+[IMAGE_HEADER] gettingstarted.png
+
+### A Quick Overview of the Process
+Animo is provided as-is in a GitHub repository. To get started, you need to clone Animo to your own repository. You then place your course file (well, you author it first) in the "assets/courses" folder, and make a minor modification to the manifest in that folder to register your course. You then register your repo on Heroku or deploy directly through GH Pages. The application parses your course file, building your course, and done! (All of this will be delved into in more detail in a moment.)
+There are no external servers to connect to, no authentication to worry about, nothing. You just clone, drop in your files, and hit deploy on your host platform of choice.
+(And if you ever want to add a new course, it's as simple as registering it in the manifest, placing it in the courses folder, and rebuilding the application on your host.)
+
+### What goes into making courses?
+[IMAGE] course-editing-screenshot.png, below, Image of course file being edited in Notepad++.
+
+Courses are simple slightly customized markdown files given the extension .anc, and can be written in any text editor. (The extension is for future proofing, not vanity, I promise!) I highly, <strong>highly</strong> recommend using Notepad++. Notepad++ allows you to wordwrap and still maintain a clear line number the wrap doesn't break. As the courses are parsed line by line in this version, it just makes things easier trouble shooting. In the screenshot below you can see how this paragraph (which is highlighted) is actually all just one line (line 39), despite breaking across multiple of them in the window. A new line number would create a new paragraph within the body (as you see in the section above).
+
+### Where do I put this thing?
+The two major options are Heroku and GitHub Pages. Animo is a simple Angular2+ application, and in theory can be deployed virtually anywhere, but only Heroku and GitHub Pages will be provided with specific instructions here.
+
+### Wait, so, what all do I need exactly?
+The main thing is a GitHub account, that is really the only hard and fast requirement. For course authoring, Notepad++ is extremely recommended as mentioned previously. It is also recommended to use Heroku for deployment if you would like a custom address and to have you work deployed in an actual production environment.
+
+### Am I allowed to make modifications to the code?
+You can do whatever you want in your own repo version, though it isn't very friendly at the moment. The current state of the code is "rushed", cleaning everything up and make it more legible for people to add their own features or contribute to the project is in the works. The typical restrictions apply though, no blatant stealing and passing it off as your own (not that I think anyone would want to) and no turning around and making profit. Animo and anything based on it must be kept completely open and free.
+
+## What can it do?
+[IMAGE_HEADER] gettingstarted.png
+### Features
+While new features are being actively added all the time, currently Animo supports almost anything a typical small scale course would need. When building your course, you can focus on entirely text lessons (such as these), provide videos, as well as lesson reinforcing quizzes. (Currently quizzes are not graded, and designed only to provide students with a personal test of knowledge and receive feedback.)
+
+### Units, Lessons, and Sections
+A course is divided up into units, and units are divided up into lessons, and then lessons are divided into sections. I really don't know what else to say here. 
+(From a typical document perspective, units are a level 1 header, lessons a level 2 header, and sections a level 3 header. This holds true for the MarkDown used in course authoring as well.)
+
+### Text Styling
+HTML is "fully" supported I say fully in quotation marks here as there is only so much you can or should do with HTML. Try to keep it simple so nothing is broken. MarkDown beyond what is explicitly discussed in this tutorial currently has only very limited support, though full support is a major development priority. It is recommended for the time being to do any styling via HTML tags. 
+A Technical Explanation on the use of HTML: All sections are populted via the Angular [innerHTML] parameter set within a &#60;p&#62; element. This means that it just takes what you write and then plugs it in as HTML between the &#60;p> and &#60;/p&#62; tags. This also means to actually display any reserved characters in HTML, you should use the appropriate HTML character codes.
+
+### Images
+You need images? You got images! I know, such a wonderful and revolutionary feature. Embedding images to supplement text, I know you're thinking to yourself "What other wonders await me?".
+No, but seriously, images. Images come in two forms: Headers and... well, just regular old images spread around the body of the lesson.
+
+### Videos
+Links to videos can be included which are embedded at the top of a lesson. Currently only videos provided through YouTube are supported.
+The idea behind video lesson presumes that the entire lesson will presented via the video, though typical lesson sections can be included as well as a supplement. While there is no explicit support for multiple videos on one lesson page or for having videos spread throughout the body of the lesson in general, <em>technically</em> you can directly include your own video embed code into a section instead of just text as per the styling section above, but if something goes wrong that's on you.
+
+### Quizzes
+Quizzes allow you to provide a means for students taking your course to test their learning. Quizzes are rather barebones at the moment, and only support two question types: Multiple Choice and True or False. Quizzes are checked against the answer key provided, though are not actually "graded". The student is simply told whether their answer is correct or incorrect. To support this, feedback is allowed for and should absolutely be included that elaborates on the answer.
+By convention it is recommended that quizzes should be logically provided as their own self-contained lesson, though other section types can be used to provide instructions or material as needed.
+
+### Citations
+Given the academic lean of this project, citations can be included on every page, displayed at the bottom. Each citation can be given a link to a website, such as the source of the citation in the case of online materials, or somewhere such as DOI information for print journals.
+
+## Image Demo
+[IMAGE_HEADER] gettingstarted.png
+### Image Basics
+The use of a header can be seen at the top of this lesson (and most in this unit) with that adorable crayon-like font. Headers can serve whatever purpose you want them to, though they don't replace the actual lesson title. Note that videos and headers cannot be used as header objects in the same lesson, with videos taking precedence over images when building the course.
+Body images (not like... body image, but images in the body of the lesson) are associated with a section of a lesson. Currently there are four placement options in each direction. Placing it to the left or the right will "float" the image, wrapping the text around it. Placing the image above the section essentially uses it as a header image for that individual section. Placing the image below the section is the default, and is what you will want to use for most non-decorative images.
+Body images should always have include "alt" text for accessibility. An optional caption may be provided as well, which appears below the image, either to provide additional explanation or something such as copyright details.
+## Video Demo
+
+## Quiz Demo
+
+## Citations Demo
+
+## Future Plans
+[IMAGE_HEADER] gettingstarted.png
+### What's on tap?
+The current priorities are in cleaning up the code and rewriting certain core sections (and of course adding in proper documentation and comments throughout), but the following features are also in the works without any time table (this all depends on my workload at any given time, and I'm in grad school, so... yeah).
+* Support complete MarkDown syntax.
+* Support for more options in handling images/videos/etc. (ex: External image links or videos from places other than YouTube.)
+* Additional quiz types and features (ex: grading).
+* User preferences.
+* Custom color themes.
+* Multiple layout configurations.
+* Course builder.
+* Development of a "Hub" platform to supplement this standalone version, on which people may register their personal Animo instances to create a searchable central repository.
+* Development of an pptional back-end which provides support for user accounts and additional functionality. (Note: This basic standalone application will always be fully functional by itself, as it is now. This would only allow for additional options for those who need them.)
+
+# Building a Course
+## Video Demo
+[VIDEO] https://www.youtube.com/embed/M7lc1UVf-VE
+[TRANSCRIPT]
+
+### Text Section
+Paragraph 1 Demo text.
+
+### Text Section
+Paragraph 1 Demo text.
+
+## Lesson 2-2
+
+### Text Section (Ex: Quiz Instructions)
+Quiz Instructions here.
+
+### Quiz Section [QUIZ]
+
+[QUESTION] Water is wet. [TF]
+[CORRECT_ANSWER] T
+[FEEDBACK] Water is, indeed, wet.
+
+[QUESTION] Which classic TV show features a family whose last name is Simpson? [MC]
+[ANSWER] He-Man
+[ANSWER] Samurai Jack
+[ANSWER] The Simpsons
+[ANSWER] Spongebob Squarepants
+[CORRECT_ANSWER] 3
+[FEEDBACK] The Simpsons is about the Simpson family. That's just how names work.
+
+# Demo Unit 3
+## Lesson 3-1
+### Text Section
+SURPRISE IT'S MORE TEXT!
+## Lesson 3-2
+### Text Section
+SURPRISE IT'S MORE TEXT! 
+## Lesson 3-3
+### Text Section
+SURPRISE IT'S MORE TEXT! 
+## Lesson 3-4
+### Text Section
+SURPRISE IT'S MORE TEXT! 
+## Lesson 3-5
+### Text Section
+SURPRISE IT'S MORE TEXT! 
+## Lesson 3-6
+### Text Section
+SURPRISE IT'S MORE TEXT! 
